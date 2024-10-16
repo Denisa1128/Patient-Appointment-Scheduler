@@ -3,6 +3,8 @@ package com.example.patient_appointment_scheduler.models.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
 @Entity
 @Table(name = "patients")
@@ -17,6 +19,10 @@ public class Patient {
     private String lastName;
     @Column(name = "age")
     private int age;
+    @Column(name = "phone")
+    private String phone;
     @Column(name = "email")
     private String email;
+    @Column(name = "address")
+    private String address;
 }
