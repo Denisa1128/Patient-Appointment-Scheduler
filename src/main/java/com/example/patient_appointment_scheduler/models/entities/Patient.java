@@ -1,4 +1,4 @@
-package models.entities;
+package com.example.patient_appointment_scheduler.models.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;

@@ -1,13 +1,13 @@
-package controllers;
+package com.example.patient_appointment_scheduler.controllers;
 
-import models.dtos.RequestPatientDTO;
-import models.dtos.ResponsePatientDTO;
+import com.example.patient_appointment_scheduler.models.dtos.RequestPatientDTO;
+import com.example.patient_appointment_scheduler.services.PatientService;
+import com.example.patient_appointment_scheduler.models.dtos.ResponsePatientDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import services.PatientService;
 
 @RestController
 @RequestMapping("/api/patients")

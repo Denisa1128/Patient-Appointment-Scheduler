@@ -1,12 +1,12 @@
-package services;
+package com.example.patient_appointment_scheduler.services;
 
+import com.example.patient_appointment_scheduler.models.dtos.RequestPatientDTO;
+import com.example.patient_appointment_scheduler.repositories.PatientRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import models.dtos.RequestPatientDTO;
-import models.dtos.ResponsePatientDTO;
-import models.entities.Patient;
+import com.example.patient_appointment_scheduler.models.dtos.ResponsePatientDTO;
+import com.example.patient_appointment_scheduler.models.entities.Patient;
 import org.springframework.stereotype.Service;
-import repositories.PatientRepository;
 
 @Slf4j
 @Service

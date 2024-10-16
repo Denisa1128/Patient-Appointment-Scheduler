@@ -1,6 +1,6 @@
-package repositories;
+package com.example.patient_appointment_scheduler.repositories;
 
-import models.entities.Patient;
+import com.example.patient_appointment_scheduler.models.entities.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
