@@ -9,5 +9,5 @@ public interface PatientService {
 
     ResponsePatientDTO createPatient(RequestPatientDTO requestPatientDTO);
     List<ResponsePatientDTO> getPatients();
-    ResponsePatientDTO updatePatient(Long id);
+    ResponsePatientDTO updatePatient(Long id,RequestPatientDTO requestPatientDTO);
 }

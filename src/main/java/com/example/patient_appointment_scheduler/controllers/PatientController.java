@@ -28,8 +28,8 @@ public class PatientController {
         return ResponseEntity.ok(patientService.getPatients());
     }
     @PatchMapping("/{id}")
-    public ResponseEntity<ResponsePatientDTO> updatePatient(@PathVariable Long id){
-        return ResponseEntity.ok(patientService.updatePatient(id));
+    public ResponseEntity<ResponsePatientDTO> updatePatient(@PathVariable Long id, @RequestBody RequestPatientDTO requestPatientDTO){
+        return ResponseEntity.ok(patientService.updatePatient(id ,requestPatientDTO));
     }
 
 }

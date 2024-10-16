@@ -46,9 +46,30 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public ResponsePatientDTO updatePatient(Long patientId) {
+    public ResponsePatientDTO updatePatient(Long patientId, RequestPatientDTO requestPatientDTO) {
         Patient patient = patientRepository.findById(patientId).orElseThrow(() -> new PatientNotFoundException("Patient with id " + patientId + "not found"));
+
+
+        if (requestPatientDTO.getFirstName() != null) {
+            patient.setFirstName(requestPatientDTO.getFirstName());
+        }
+        if (requestPatientDTO.getLastName() != null) {
+            patient.setLastName(requestPatientDTO.getLastName());
+        }
+        if (requestPatientDTO.getPhone() != null) {
+            patient.setPhone(requestPatientDTO.getPhone());
+        }
+        if (requestPatientDTO.getEmail() != null) {
+            patient.setEmail(requestPatientDTO.getEmail());
+        }
+
+        if (requestPatientDTO.getAddress() != null) {
+            patient.setAddress(requestPatientDTO.getAddress());
+
+        }
         Patient updatedPatient = patientRepository.save(patient);
+
+
         return objectMapper.convertValue(updatedPatient, ResponsePatientDTO.class);
     }
 }
