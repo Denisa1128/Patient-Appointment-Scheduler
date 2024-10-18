@@ -72,4 +72,11 @@ public class PatientServiceImpl implements PatientService {
 
         return objectMapper.convertValue(updatedPatient, ResponsePatientDTO.class);
     }
+
+    @Override
+    public void deletePatientById(Long id) {
+        patientRepository.findById(id).orElseThrow(() -> new PatientNotFoundException("Patient with id " + id + "not found"));
+        patientRepository.deleteById(id);
+        log.info("Patient with id {} was deleted", id);
+    }
 }

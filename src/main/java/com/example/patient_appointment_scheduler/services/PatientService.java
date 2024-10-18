@@ -8,6 +8,11 @@ import java.util.List;
 public interface PatientService {
 
     ResponsePatientDTO createPatient(RequestPatientDTO requestPatientDTO);
+
+    void deletePatientById(Long id);
+
     List<ResponsePatientDTO> getPatients();
-    ResponsePatientDTO updatePatient(Long id,RequestPatientDTO requestPatientDTO);
+
+    ResponsePatientDTO updatePatient(Long id, RequestPatientDTO requestPatientDTO);
+
 }
