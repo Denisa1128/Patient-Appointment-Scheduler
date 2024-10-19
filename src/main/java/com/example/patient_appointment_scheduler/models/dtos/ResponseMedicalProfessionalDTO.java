@@ -11,6 +11,4 @@ public class ResponseMedicalProfessionalDTO {
     private String specialty;
     private String phone;
     private String email;
-
-
 }

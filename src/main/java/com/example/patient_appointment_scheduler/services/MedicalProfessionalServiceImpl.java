@@ -36,31 +36,14 @@ public class MedicalProfessionalServiceImpl implements MedicalProfessionalServic
     public List<ResponseMedicalProfessionalDTO> getMedicalProfessional() {
         List<MedicalProfessional> medicalProfessionalDTOList = medicalProfessionalRepository.findAll();
         return medicalProfessionalDTOList.stream().map(medicalProfessional -> objectMapper.convertValue(medicalProfessional, ResponseMedicalProfessionalDTO.class)).toList();
-
     }
 
     @Override
     public ResponseMedicalProfessionalDTO updateMedicalProfessional(Long medicalProfessionalId, RequestMedicalProfessionalDTO requestMedicalProfessionalDTO) {
         MedicalProfessional medicalProfessional = medicalProfessionalRepository.findById(medicalProfessionalId).orElseThrow(() -> new MedicalProfessionalNotFoundException("Medical Professional with id " + medicalProfessionalId + "not found"));
-
-
-        if (requestMedicalProfessionalDTO.getFirstName() != null) {
-            medicalProfessional.setFirstName(requestMedicalProfessionalDTO.getFirstName());
-        }
-        if (requestMedicalProfessionalDTO.getLastName() != null) {
-            medicalProfessional.setLastName(requestMedicalProfessionalDTO.getLastName());
-        }
-        if (requestMedicalProfessionalDTO.getPhone() != null) {
-            medicalProfessional.setPhone(requestMedicalProfessionalDTO.getPhone());
-        }
-        if (requestMedicalProfessionalDTO.getEmail() != null) {
-            medicalProfessional.setEmail(requestMedicalProfessionalDTO.getEmail());
-        }
-
-
         MedicalProfessional updatedMedicalProfessional = medicalProfessionalRepository.save(medicalProfessional);
-        return objectMapper.convertValue(updatedMedicalProfessional, ResponseMedicalProfessionalDTO.class);
 
+        return objectMapper.convertValue(updatedMedicalProfessional, ResponseMedicalProfessionalDTO.class);
     }
 
     @Override

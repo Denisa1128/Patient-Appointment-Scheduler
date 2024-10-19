@@ -29,7 +29,7 @@ public class MedicalProfessionalController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<ResponseMedicalProfessionalDTO> updateMedicalProfessional(@PathVariable Long id, @RequestBody RequestMedicalProfessionalDTO requestMedicalProfessionalDTO) {
+    public ResponseEntity<ResponseMedicalProfessionalDTO> updateMedicalProfessional (@PathVariable Long id, @RequestBody RequestMedicalProfessionalDTO requestMedicalProfessionalDTO) {
         return ResponseEntity.ok(medicalProfessionalService.updateMedicalProfessional(id, requestMedicalProfessionalDTO));
     }
 

@@ -1,6 +1,7 @@
 package com.example.patient_appointment_scheduler.models.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 @Table(name = "medical-professionals")
 @Entity
