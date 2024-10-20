@@ -12,7 +12,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -86,4 +85,6 @@ public class PatientServiceImplTest {
 
         verify(patientRepository, times(1)).save(patientEntity);
         assertEquals(requestPatientDTO.getFirstName(), savedPatientDTO.getFirstName());
-        assertEquals(requestPatientDTO.getLastName(), savedPatientDTO.getLastName());}}
+        assertEquals(requestPatientDTO.getLastName(), savedPatientDTO.getLastName());
+    }
+}
