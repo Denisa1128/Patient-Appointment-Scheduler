@@ -1,5 +1,6 @@
 package com.example.patient_appointment_scheduler.unit_tests;
 
+
 import com.example.patient_appointment_scheduler.models.dtos.RequestPatientDTO;
 import com.example.patient_appointment_scheduler.models.dtos.ResponsePatientDTO;
 import com.example.patient_appointment_scheduler.models.entities.Patient;
@@ -8,6 +9,7 @@ import com.example.patient_appointment_scheduler.services.PatientServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -23,7 +25,7 @@ public class PatientServiceImplTest {
     @Mock
     PatientRepository patientRepository;
 
-    @Mock
+    @InjectMocks
     PatientServiceImpl patientService;
 
 
@@ -40,12 +42,13 @@ public class PatientServiceImplTest {
         requestPatientDTO.setAddress("125 Sun St");
 
         ResponsePatientDTO responsePatientDTO = new ResponsePatientDTO();
-        requestPatientDTO.setFirstName("Sarah");
-        requestPatientDTO.setLastName("Levis");
-        requestPatientDTO.setPhone("07569822");
-        requestPatientDTO.setAge(31);
-        requestPatientDTO.setEmail("sarahl@gmail.com");
-        requestPatientDTO.setAddress("125 Sun St");
+        responsePatientDTO.setId(1L);
+        responsePatientDTO.setFirstName("Sarah");
+        responsePatientDTO.setLastName("Levis");
+        responsePatientDTO.setPhone("07569822");
+        responsePatientDTO.setAge(31);
+        responsePatientDTO.setEmail("sarahl@gmail.com");
+        responsePatientDTO.setAddress("125 Sun St");
 
         Patient patientEntity = new Patient();
         patientEntity.setId(1L);
