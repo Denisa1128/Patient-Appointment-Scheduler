@@ -1,5 +1,6 @@
 package com.example.patient_appointment_scheduler.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,6 +18,7 @@ public class Appointment {
     private String patientId;
     @Column(name = "professional_id")
     private String professionalId;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @Column(name = "appointment_date_time")
     private LocalDateTime appointmentDateTime;
     @Column(name = "status")
