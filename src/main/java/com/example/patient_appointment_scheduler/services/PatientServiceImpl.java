@@ -7,10 +7,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import com.example.patient_appointment_scheduler.models.dtos.ResponsePatientDTO;
 import com.example.patient_appointment_scheduler.models.entities.Patient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
 
 import java.util.List;
 
@@ -42,33 +40,12 @@ public class PatientServiceImpl implements PatientService {
         return patientDTOList.stream()
                 .map(patient -> objectMapper.convertValue(patient, ResponsePatientDTO.class))
                 .toList();
-
     }
 
     @Override
     public ResponsePatientDTO updatePatient(Long patientId, RequestPatientDTO requestPatientDTO) {
         Patient patient = patientRepository.findById(patientId).orElseThrow(() -> new PatientNotFoundException("Patient with id " + patientId + "not found"));
-
-
-        if (requestPatientDTO.getFirstName() != null) {
-            patient.setFirstName(requestPatientDTO.getFirstName());
-        }
-        if (requestPatientDTO.getLastName() != null) {
-            patient.setLastName(requestPatientDTO.getLastName());
-        }
-        if (requestPatientDTO.getPhone() != null) {
-            patient.setPhone(requestPatientDTO.getPhone());
-        }
-        if (requestPatientDTO.getEmail() != null) {
-            patient.setEmail(requestPatientDTO.getEmail());
-        }
-
-        if (requestPatientDTO.getAddress() != null) {
-            patient.setAddress(requestPatientDTO.getAddress());
-
-        }
         Patient updatedPatient = patientRepository.save(patient);
-
 
         return objectMapper.convertValue(updatedPatient, ResponsePatientDTO.class);
     }
