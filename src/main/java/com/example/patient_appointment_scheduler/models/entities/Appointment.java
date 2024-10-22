@@ -14,10 +14,13 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "patient_id")
-    private String patientId;
-    @Column(name = "professional_id")
-    private String professionalId;
+
+    @ManyToOne
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
+    @ManyToOne
+    @JoinColumn(name = "professional_id")
+    private MedicalProfessional medicalProfessional;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @Column(name = "appointment_date_time")
     private LocalDateTime appointmentDateTime;
