@@ -3,6 +3,7 @@ package com.example.patient_appointment_scheduler.controllers;
 import com.example.patient_appointment_scheduler.models.dtos.RequestMedicalProfessionalDTO;
 import com.example.patient_appointment_scheduler.models.dtos.ResponseMedicalProfessionalDTO;
 import com.example.patient_appointment_scheduler.services.MedicalProfessionalService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +19,9 @@ public class MedicalProfessionalController {
         this.medicalProfessionalService = medicalProfessionalService;
     }
 
+
     @PostMapping
-    public ResponseEntity<ResponseMedicalProfessionalDTO> createMedicalProfessional(@RequestBody RequestMedicalProfessionalDTO requestMedicalProfessionalDTO) {
+    public ResponseEntity<ResponseMedicalProfessionalDTO> createMedicalProfessional(@Valid @RequestBody RequestMedicalProfessionalDTO requestMedicalProfessionalDTO) {
         return ResponseEntity.ok(medicalProfessionalService.createMedicalProfessional(requestMedicalProfessionalDTO));
     }
 
@@ -29,12 +31,12 @@ public class MedicalProfessionalController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<ResponseMedicalProfessionalDTO> updateMedicalProfessional (@PathVariable Long id, @RequestBody RequestMedicalProfessionalDTO requestMedicalProfessionalDTO) {
+    public ResponseEntity<ResponseMedicalProfessionalDTO> updateMedicalProfessional(@PathVariable Long id, @RequestBody RequestMedicalProfessionalDTO requestMedicalProfessionalDTO) {
         return ResponseEntity.ok(medicalProfessionalService.updateMedicalProfessional(id, requestMedicalProfessionalDTO));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMedicalProfessionalById(@PathVariable  Long id) {
+    public ResponseEntity<Void> deleteMedicalProfessionalById(@PathVariable Long id) {
         medicalProfessionalService.deleteMedicalProfessionalById(id);
         return ResponseEntity.noContent().build();
     }
