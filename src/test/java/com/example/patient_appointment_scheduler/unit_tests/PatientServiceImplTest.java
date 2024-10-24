@@ -12,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -31,7 +32,7 @@ public class PatientServiceImplTest {
     @Test
     void createPatient() {
 
-
+        //given
         RequestPatientDTO requestPatientDTO = new RequestPatientDTO();
         requestPatientDTO.setFirstName("Sarah");
         requestPatientDTO.setLastName("Levis");
@@ -68,21 +69,14 @@ public class PatientServiceImplTest {
         savedPatientEntity.setAddress("125 Sun St");
 
 
-        when(objectMapper.convertValue(requestPatientDTO, Patient.class)).
+        when(objectMapper.convertValue(requestPatientDTO, Patient.class)).thenReturn(patientEntity);
+        when(patientRepository.save(patientEntity)).thenReturn(patientEntity);
+        when(objectMapper.convertValue(savedPatientEntity, ResponsePatientDTO.class)).thenReturn(responsePatientDTO);
 
-                thenReturn(patientEntity);
-
-        when(patientRepository.save(patientEntity)).
-
-                thenReturn(patientEntity);
-
-        when(objectMapper.convertValue(savedPatientEntity, ResponsePatientDTO.class)).
-
-                thenReturn(responsePatientDTO);
-
+        //when
         ResponsePatientDTO savedPatientDTO = patientService.createPatient(requestPatientDTO);
 
-
+        //then
         verify(patientRepository, times(1)).save(patientEntity);
         assertEquals(requestPatientDTO.getFirstName(), savedPatientDTO.getFirstName());
         assertEquals(requestPatientDTO.getLastName(), savedPatientDTO.getLastName());

@@ -11,7 +11,7 @@ public interface PatientService {
 
     void deletePatientById(Long id);
 
-    List<ResponsePatientDTO> getPatients();
+    List<ResponsePatientDTO> getPatients(String firstName,String lastName);
 
     ResponsePatientDTO updatePatient(Long id, RequestPatientDTO requestPatientDTO);
 

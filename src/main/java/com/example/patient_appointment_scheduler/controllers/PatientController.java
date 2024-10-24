@@ -26,8 +26,10 @@ public class PatientController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<ResponsePatientDTO>> getPatients() {
-        return ResponseEntity.ok(patientService.getPatients());
+    public ResponseEntity<List<ResponsePatientDTO>> getPatients(
+            @RequestParam(value = "firstName", required = false) String firstName,
+            @RequestParam(value = "lastName", required = false) String lastName) {
+        return ResponseEntity.ok(patientService.getPatients(firstName, lastName));
     }
 
     @PatchMapping("/{id}")

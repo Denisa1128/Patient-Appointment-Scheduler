@@ -12,7 +12,6 @@ public class RequestPatientDTO {
     private String firstName;
     @NotBlank(message = "LastName is required")
     private String lastName;
-    private LocalDate dateOfBirth;
     private int age;
     private String phone;
     private String email;

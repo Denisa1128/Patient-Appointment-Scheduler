@@ -7,9 +7,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import com.example.patient_appointment_scheduler.models.dtos.ResponsePatientDTO;
 import com.example.patient_appointment_scheduler.models.entities.Patient;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-
-
 import java.util.List;
 
 @Slf4j
@@ -31,12 +30,14 @@ public class PatientServiceImpl implements PatientService {
         log.info("Patient with id {} was saved", patientEntityResponse.getId());
 
         return objectMapper.convertValue(patientEntityResponse, ResponsePatientDTO.class);
-
     }
 
     @Override
-    public List<ResponsePatientDTO> getPatients() {
-        List<Patient> patientDTOList = patientRepository.findAll();
+    public List<ResponsePatientDTO> getPatients(String firstName, String lastName) {
+        Specification<Patient> spec = Specification
+                .where(PatientSpecification.firstNameContains(firstName))
+                .and(PatientSpecification.lastNameContains(lastName));
+        List<Patient> patientDTOList = patientRepository.findAll(spec);
         return patientDTOList.stream()
                 .map(patient -> objectMapper.convertValue(patient, ResponsePatientDTO.class))
                 .toList();
