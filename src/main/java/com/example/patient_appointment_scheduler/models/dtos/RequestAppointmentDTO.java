@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 @Data
 public class RequestAppointmentDTO {
     @NotNull
-    private String patientId;
+    private Long patientId;
     @NotNull
-    private String professionalId;
+    private Long professionalId;
     @NotNull
     private LocalDateTime appointmentDateTime;
     @NotNull

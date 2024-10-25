@@ -19,6 +19,4 @@ public class RequestMedicalProfessionalDTO {
     @NotBlank(message = "This field is mandatory")
     @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "Email should be valid")
     private String email;
-    @NotNull
-    private String address;
 }

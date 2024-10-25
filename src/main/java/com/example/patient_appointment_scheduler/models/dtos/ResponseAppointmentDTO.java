@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 public class ResponseAppointmentDTO {
 
     private Long id;
-    private String patientId;
-    private String professionalId;
+    private String patient;
+    private String doctor;
     private LocalDateTime appointmentDateTime;
     private String status;
     private String treatmentDetails;

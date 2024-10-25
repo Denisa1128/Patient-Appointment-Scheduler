@@ -2,6 +2,8 @@ package com.example.patient_appointment_scheduler.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -16,10 +18,10 @@ public class Appointment {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "patient_id")
+    @JoinColumn(name = "patient")
     private Patient patient;
     @ManyToOne
-    @JoinColumn(name = "professional_id")
+    @JoinColumn(name = "medical_professional")
     private MedicalProfessional medicalProfessional;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @Column(name = "appointment_date_time")
