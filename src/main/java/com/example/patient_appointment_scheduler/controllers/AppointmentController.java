@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/appointment")
+@RequestMapping("/api/appointments")
 public class AppointmentController {
+
     private final AppointmentService appointmentService;
 
     public AppointmentController(AppointmentService appointmentService) {
@@ -27,7 +28,6 @@ public class AppointmentController {
     @GetMapping
     public ResponseEntity<List<ResponseAppointmentDTO>> getAppointment() {
         return ResponseEntity.ok(appointmentService.getAppointment());
-
     }
 
     @PatchMapping("/{id}")

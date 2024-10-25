@@ -7,7 +7,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class RequestAppointmentDTO {
+public class    RequestAppointmentDTO {
     @NotNull
     private Long patientId;
     @NotNull
@@ -18,5 +18,4 @@ public class RequestAppointmentDTO {
     private String status;
     @NotNull
     private String treatmentDetails;
-
 }

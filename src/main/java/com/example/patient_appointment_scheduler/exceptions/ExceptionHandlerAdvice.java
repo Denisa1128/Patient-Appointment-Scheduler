@@ -56,7 +56,6 @@ public class ExceptionHandlerAdvice  extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<>(objectToString(errors), BAD_REQUEST);
     }
-
     private String objectToString(Object response) {
         try {
             return objectMapper.writeValueAsString(response);

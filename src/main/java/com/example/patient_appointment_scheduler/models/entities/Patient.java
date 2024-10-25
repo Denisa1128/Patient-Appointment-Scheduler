@@ -1,5 +1,7 @@
 package com.example.patient_appointment_scheduler.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -27,5 +29,6 @@ public class Patient {
     @Column(name = "address")
     private String address;
     @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Appointment> appointments;
 }

@@ -1,6 +1,7 @@
 package com.example.patient_appointment_scheduler.models.dtos;
 
-import jakarta.persistence.Column;
+import com.example.patient_appointment_scheduler.models.dtos.ResponseMedicalProfessionalDTO;
+import com.example.patient_appointment_scheduler.models.dtos.ResponsePatientDTO;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -9,8 +10,8 @@ import java.time.LocalDateTime;
 public class ResponseAppointmentDTO {
 
     private Long id;
-    private String patient;
-    private String doctor;
+    private ResponsePatientDTO patient;
+    private ResponseMedicalProfessionalDTO medicalProfessional;
     private LocalDateTime appointmentDateTime;
     private String status;
     private String treatmentDetails;

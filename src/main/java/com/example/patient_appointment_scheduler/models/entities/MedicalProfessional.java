@@ -1,5 +1,6 @@
 package com.example.patient_appointment_scheduler.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -24,5 +25,6 @@ public class MedicalProfessional {
     @Column(name = "email")
     private String email;
     @OneToMany(mappedBy = "medicalProfessional", cascade = CascadeType.ALL)
-    private List<Appointment> appointment;
+    @JsonBackReference
+    private List<Appointment> appointments;
 }

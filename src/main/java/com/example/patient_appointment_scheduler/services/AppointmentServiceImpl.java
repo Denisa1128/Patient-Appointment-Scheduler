@@ -5,6 +5,8 @@ import com.example.patient_appointment_scheduler.exceptions.MedicalProfessionalN
 import com.example.patient_appointment_scheduler.exceptions.PatientNotFoundException;
 import com.example.patient_appointment_scheduler.models.dtos.RequestAppointmentDTO;
 import com.example.patient_appointment_scheduler.models.dtos.ResponseAppointmentDTO;
+import com.example.patient_appointment_scheduler.models.dtos.ResponseMedicalProfessionalDTO;
+import com.example.patient_appointment_scheduler.models.dtos.ResponsePatientDTO;
 import com.example.patient_appointment_scheduler.models.entities.Appointment;
 import com.example.patient_appointment_scheduler.models.entities.MedicalProfessional;
 import com.example.patient_appointment_scheduler.models.entities.Patient;
@@ -46,10 +48,19 @@ public class AppointmentServiceImpl implements AppointmentService {
         appointmentEntity.setPatient(patient);
         appointmentEntity.setMedicalProfessional(medicalProfessional);
         appointmentEntity.setAppointmentDateTime(LocalDateTime.now());
-        Appointment appointmentEntityResponse = appointmentRepository.save(appointmentEntity);
-        log.info("Appointment with id {} was saved", appointmentEntityResponse.getId());
 
-        return objectMapper.convertValue(appointmentEntityResponse, ResponseAppointmentDTO.class);
+        Appointment entityResponse = appointmentRepository.save(appointmentEntity);
+        log.info("Appointment with id {} was saved", entityResponse.getId());
+
+        ResponseAppointmentDTO response = new ResponseAppointmentDTO();
+        response.setId(entityResponse.getId());
+        response.setPatient(objectMapper.convertValue(entityResponse.getPatient(), ResponsePatientDTO.class));
+        response.setMedicalProfessional(objectMapper.convertValue(entityResponse.getMedicalProfessional(), ResponseMedicalProfessionalDTO.class));
+        response.setStatus(entityResponse.getStatus());
+        response.setAppointmentDateTime(entityResponse.getAppointmentDateTime());
+        response.setTreatmentDetails(entityResponse.getTreatmentDetails());
+
+        return response;
     }
 
     @Override

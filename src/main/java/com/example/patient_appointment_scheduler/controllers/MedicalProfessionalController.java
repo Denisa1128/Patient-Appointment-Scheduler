@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/medical-professional")
+@RequestMapping("/api/medical-professionals")
 public class MedicalProfessionalController {
 
     private final MedicalProfessionalService medicalProfessionalService;
@@ -18,7 +18,6 @@ public class MedicalProfessionalController {
     public MedicalProfessionalController(MedicalProfessionalService medicalProfessionalService) {
         this.medicalProfessionalService = medicalProfessionalService;
     }
-
 
     @PostMapping
     public ResponseEntity<ResponseMedicalProfessionalDTO> createMedicalProfessional(@Valid @RequestBody RequestMedicalProfessionalDTO requestMedicalProfessionalDTO) {
@@ -40,6 +39,5 @@ public class MedicalProfessionalController {
         medicalProfessionalService.deleteMedicalProfessionalById(id);
         return ResponseEntity.noContent().build();
     }
-
 
 }
