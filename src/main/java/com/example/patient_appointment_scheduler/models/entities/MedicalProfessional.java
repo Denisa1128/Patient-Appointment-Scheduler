@@ -1,6 +1,7 @@
 package com.example.patient_appointment_scheduler.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -19,12 +20,12 @@ public class MedicalProfessional {
     @Column(name = "lastName")
     private String lastName;
     @Column(name = "specialty")
-    private String specialty;
+    private String speciality;
     @Column(name = "phone")
     private String phone;
     @Column(name = "email")
     private String email;
     @OneToMany(mappedBy = "medicalProfessional", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonManagedReference ("professional-appointment")
     private List<Appointment> appointments;
 }

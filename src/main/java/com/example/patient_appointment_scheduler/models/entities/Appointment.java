@@ -21,12 +21,12 @@ public class Appointment {
 
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference("patient-appointment")
     private Patient patient;
 
     @ManyToOne
     @JoinColumn(name = "medical_professional_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference("professional-appointment")
     private MedicalProfessional medicalProfessional;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")

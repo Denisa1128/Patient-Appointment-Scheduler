@@ -9,6 +9,8 @@ import com.example.patient_appointment_scheduler.models.dtos.ResponsePatientDTO;
 import com.example.patient_appointment_scheduler.models.entities.Patient;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Slf4j
@@ -42,10 +44,16 @@ public class PatientServiceImpl implements PatientService {
                 .map(patient -> objectMapper.convertValue(patient, ResponsePatientDTO.class))
                 .toList();
     }
-
     @Override
+    @Transactional
     public ResponsePatientDTO updatePatient(Long patientId, RequestPatientDTO requestPatientDTO) {
         Patient patient = patientRepository.findById(patientId).orElseThrow(() -> new PatientNotFoundException("Patient with id " + patientId + "not found"));
+        patient.setFirstName(requestPatientDTO.getFirstName());
+        patient.setLastName(requestPatientDTO.getLastName());
+        patient.setAge(requestPatientDTO.getAge());
+        patient.setPhone(requestPatientDTO.getPhone());
+        patient.setEmail(requestPatientDTO.getEmail());
+        patient.setAddress(requestPatientDTO.getAddress());
         Patient updatedPatient = patientRepository.save(patient);
 
         return objectMapper.convertValue(updatedPatient, ResponsePatientDTO.class);

@@ -1,0 +1,49 @@
+Business Domain: Patient Appointment Scheduler
+The Patient Appointment Scheduler is a comprehensive healthcare platform that facilitates the scheduling and management of appointments with various medical professionals.
+
+Feature 1 Patient
+Feature 2 Appointment
+Feature 3 Medical Professional
+
+
+
+API Endpoints
+GET /api/patients: Retrieve all patients' details.
+POST /api/patients: Add a new patient to the system.
+DELETE/api / patients: Delete a patient
+
+
+GET /api/appointments: Retrieve all appointments.
+POST /api/appointments: Schedule a new appointment.
+PUT /api/appointments/:id: Reschedule or update an existing appointment.
+DELETE /api/appointments/:id: Cancel an appointment.
+
+
+GET /api/medical-professional: Retrieve all medical-professionals
+POST /api medical-professional:Add a new medical professional
+DELETE /api/medical-professional: Delete an medical-professional
+
+
+Tech Stack
+
+ Java 17
+ Spring Boot
+ Maven
+ PostgreSQL
+ h2 Database
+ Spring Data JPA
+ Hibernate
+ MockMVC
+ Junit 5
+ Mockito
+ Postman
+
+APIs:
+REST APIs for scheduling, patient data management, and treatment plan tracking.
+
+ Usage
+  Create patients and store their information.
+  Schedule appointments.
+  Manage and update patient appointments.
+  Store and manage patient profiles, including medical history, contact details, and other important information.
+

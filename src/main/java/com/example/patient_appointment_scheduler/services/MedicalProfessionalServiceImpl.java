@@ -9,6 +9,7 @@ import com.example.patient_appointment_scheduler.repositories.MedicalProfessiona
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -39,10 +40,15 @@ public class MedicalProfessionalServiceImpl implements MedicalProfessionalServic
     }
 
     @Override
+    @Transactional
     public ResponseMedicalProfessionalDTO updateMedicalProfessional(Long medicalProfessionalId, RequestMedicalProfessionalDTO requestMedicalProfessionalDTO) {
         MedicalProfessional medicalProfessional = medicalProfessionalRepository.findById(medicalProfessionalId).orElseThrow(() -> new MedicalProfessionalNotFoundException("Medical Professional with id " + medicalProfessionalId + "not found"));
-        MedicalProfessional updatedMedicalProfessional = medicalProfessionalRepository.save(medicalProfessional);
+        medicalProfessional.setFirstName(requestMedicalProfessionalDTO.getFirstName());
+        medicalProfessional.setLastName(requestMedicalProfessionalDTO.getLastName());
+        medicalProfessional.setPhone(requestMedicalProfessionalDTO.getPhone());
+        medicalProfessional.setEmail(requestMedicalProfessionalDTO.getEmail());
 
+        MedicalProfessional updatedMedicalProfessional = medicalProfessionalRepository.save(medicalProfessional);
         return objectMapper.convertValue(updatedMedicalProfessional, ResponseMedicalProfessionalDTO.class);
     }
 

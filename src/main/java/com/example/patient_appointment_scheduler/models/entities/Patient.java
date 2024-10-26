@@ -29,6 +29,6 @@ public class Patient {
     @Column(name = "address")
     private String address;
     @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonManagedReference ("patient-appointment")
     private List<Appointment> appointments;
 }

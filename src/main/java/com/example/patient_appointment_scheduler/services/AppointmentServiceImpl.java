@@ -16,6 +16,7 @@ import com.example.patient_appointment_scheduler.repositories.PatientRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -48,6 +49,8 @@ public class AppointmentServiceImpl implements AppointmentService {
         appointmentEntity.setPatient(patient);
         appointmentEntity.setMedicalProfessional(medicalProfessional);
         appointmentEntity.setAppointmentDateTime(LocalDateTime.now());
+        appointmentEntity.setStatus(requestAppointmentDTO.getStatus());
+        appointmentEntity.setTreatmentDetails(requestAppointmentDTO.getTreatmentDetails());
 
         Appointment entityResponse = appointmentRepository.save(appointmentEntity);
         log.info("Appointment with id {} was saved", entityResponse.getId());
@@ -72,8 +75,11 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
+    @Transactional
     public ResponseAppointmentDTO updateAppointment(Long appointmentId, RequestAppointmentDTO requestAppointmentDTO) {
         Appointment appointment = appointmentRepository.findById(appointmentId).orElseThrow(() -> new AppointmentNotFoundException("Appointment with id " + appointmentId + "not found"));
+        appointment.setStatus(requestAppointmentDTO.getStatus());
+        appointment.setTreatmentDetails(requestAppointmentDTO.getTreatmentDetails());
         Appointment updatedAppointment = appointmentRepository.save(appointment);
 
         return objectMapper.convertValue(updatedAppointment, ResponseAppointmentDTO.class);
