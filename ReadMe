@@ -10,12 +10,13 @@ Feature 3 Medical Professional
 API Endpoints
 GET /api/patients: Retrieve all patients' details.
 POST /api/patients: Add a new patient to the system.
+PATCH/api/patients: Update patients
 DELETE/api / patients: Delete a patient
 
 
 GET /api/appointments: Retrieve all appointments.
 POST /api/appointments: Schedule a new appointment.
-PUT /api/appointments/:id: Reschedule or update an existing appointment.
+PATCH/api/appointments/:id: Reschedule or update an existing appointment.
 DELETE /api/appointments/:id: Cancel an appointment.
 
 

@@ -20,7 +20,7 @@ public class MedicalProfessional {
     @Column(name = "lastName")
     private String lastName;
     @Column(name = "specialty")
-    private String speciality;
+    private String specialty;
     @Column(name = "phone")
     private String phone;
     @Column(name = "email")
